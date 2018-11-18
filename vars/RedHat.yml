@@ -1,6 +1,8 @@
 ---
 __base_packages:
   - unzip
+  - make
+  - gcc
   - libtool
   - python-devel
   - net-snmp-devel
