@@ -6,13 +6,14 @@
     src: "{{ libzmq_package }}"
     dest: /usr/local/src/
 
+- name: Compile libzmq.
+  shell: ./autogen.sh;./configure;make -j{{ ansible_processor_cores|default(1) + 1 }}
+  args:
+    chdir: /usr/local/src/libzmq
+
 - name: Install libzmq.
-  shell: |
-         ./autogen.sh;
-         ./configure;
-         make -j{{ ansible_processor_cores|default(1) + 1 }}
+  shell: 
          make install;
-         ldconfig
   args:
     chdir: /usr/local/src/libzmq
 
@@ -22,12 +23,13 @@
     src: "{{ zeromq_package }}"
     dest: /usr/local/src/
 
+- name: Compile zeromq.
+  shell: ./autogen.sh; ./configure; make -j{{ ansible_processor_cores|default(1) + 1 }}
+  args:
+    chdir: /usr/local/src/zeromq-4.0.3
+
 - name: Install zeromq.
-  shell: |
-         ./autogen.sh;
-         ./configure;
-         make -j{{ ansible_processor_cores|default(1) + 1 }}
-         make install;
+  shell: make install
   args:
     chdir: /usr/local/src/zeromq-4.0.3
 
@@ -37,12 +39,13 @@
     src: "{{ pyzmq_package }}"
     dest: /usr/local/src/
 
+- name: Compile pyzmq.
+  shell: ./autogen.sh;./configure; make -j{{ ansible_processor_cores|default(1) + 1 }}
+  args:
+    chdir: /usr/local/src/pyzmq-14.1.1
+
 - name: Install pyzmq.
-  shell: |
-         ./autogen.sh;
-         ./configure;
-         make -j{{ ansible_processor_cores|default(1) + 1 }}
-         make install;
+  shell: make install
   args:
     chdir: /usr/local/src/pyzmq-14.1.1
 
@@ -52,11 +55,13 @@
     src: "{{ czmq_package }}"
     dest: /usr/local/src/
 
+- name: Compile czmq.
+  shell:  ./configure;make -j{{ ansible_processor_cores|default(1) + 1 }};
+  args:
+    chdir: /usr/local/src/czmq-4.1.1
+
 - name: Install czmq.
-  shell: |
-          ./configure;
-          make -j{{ ansible_processor_cores|default(1) + 1 }};
-          make install;
+  shell: make install
   args:
     chdir: /usr/local/src/czmq-4.1.1
 
