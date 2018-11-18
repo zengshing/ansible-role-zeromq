@@ -1,0 +1,80 @@
+---
+
+- name: Unarchive libzmq.
+  unarchive:
+    remote_src: false
+    src: "{{ libzmq_package }}"
+    dest: /usr/local/src/
+
+- name: Install libzmq.
+  shell: |
+         ./autogen.sh;
+         ./configure;
+         make -j{{ ansible_processor_cores|default(1) + 1 }}
+         make install;
+         ldconfig
+  args:
+    chdir: /usr/local/src/libzmq
+
+- name: Unarchive zeromq.
+  unarchive:
+    remote_src: false
+    src: "{{ zeromq_package }}"
+    dest: /usr/local/src/
+
+- name: Install zeromq.
+  shell: |
+         ./autogen.sh;
+         ./configure;
+         make -j{{ ansible_processor_cores|default(1) + 1 }}
+         make install;
+  args:
+    chdir: /usr/local/src/zeromq-4.0.3
+
+- name: Unarchive pyzmq.
+  unarchive:
+    remote_src: false
+    src: "{{ pyzmq_package }}"
+    dest: /usr/local/src/
+
+- name: Install pyzmq.
+  shell: |
+         ./autogen.sh;
+         ./configure;
+         make -j{{ ansible_processor_cores|default(1) + 1 }}
+         make install;
+  args:
+    chdir: /usr/local/src/pyzmq-14.1.1
+
+- name: Unarchive czmq.
+  unarchive:
+    remote_src: false
+    src: "{{ czmq_package }}"
+    dest: /usr/local/src/
+
+- name: Install czmq.
+  shell: |
+          ./configure;
+          make -j{{ ansible_processor_cores|default(1) + 1 }};
+          make install;
+  args:
+    chdir: /usr/local/src/czmq-4.1.1
+
+- name: Unarchive netsnmp-py.
+  unarchive:
+    remote_src: false
+    src: "{{ snetsnmp_package }}"
+    dest: /usr/local/src/
+
+- name: Install netsnmp-py.
+  shell: python setup.py install
+  args:
+    chdir: /usr/local/src/netsnmp-py3-0.4
+
+- name: Add zmq library.
+  blockinfile:
+    path: /etc/ld.so.conf
+    block: "/usr/local/lib/"
+
+- name: reload ldconfig.
+  shell: ldconfig

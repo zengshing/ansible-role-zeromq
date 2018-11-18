@@ -1,0 +1,6 @@
+---
+__base_packages:
+  - unzip
+  - libtool
+  - python-devel
+  - net-snmp-devel

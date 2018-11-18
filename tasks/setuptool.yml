@@ -1,0 +1,15 @@
+---
+
+- name: Install python depedent packages.
+  yum: name="{{ base_package }}" state=present
+
+- name: Unarchive setuptool.
+  unarchive:
+    remote_src: false
+    src: "{{ setuptool_package }}"
+    dest: /usr/local/src/
+
+- name: Install setuptool.
+  shell: python setup.py install
+  args:
+    chdir: /usr/local/src/setuptools-39.1.0

@@ -1,0 +1,6 @@
+---
+
+- name: Install base packages.
+  yum: name={{ item }} state=present
+  loop:
+    - "{{ base_packages }}"
