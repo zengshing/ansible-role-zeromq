@@ -1,5 +1,5 @@
 ---
-# tasks file for python 
+# tasks file for python
 
 - include_tasks: variables.yml
 - include_tasks: base.yml

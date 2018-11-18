@@ -1,8 +1,5 @@
 ---
 
-- name: Install python depedent packages.
-  yum: name="{{ base_package }}" state=present
-
 - name: Unarchive setuptool.
   unarchive:
     remote_src: false
