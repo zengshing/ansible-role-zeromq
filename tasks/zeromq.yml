@@ -23,7 +23,7 @@
     dest: /usr/local/src/
 
 - name: Compile zeromq.
-  shell: ./autogen.sh; ./configure; make -j{{ ansible_processor_cores|default(1) + 1 }}
+  shell: ./autogen.sh;./configure;make -j{{ ansible_processor_cores|default(1) + 1 }}
   args:
     chdir: /usr/local/src/zeromq-4.0.3
 
@@ -39,7 +39,7 @@
     dest: /usr/local/src/
 
 - name: Compile pyzmq.
-  shell: ./autogen.sh;./configure; make -j{{ ansible_processor_cores|default(1) + 1 }}
+  shell: ./autogen.sh;./configure;make -j{{ ansible_processor_cores|default(1) + 1 }}
   args:
     chdir: /usr/local/src/pyzmq-14.1.1
 
