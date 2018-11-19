@@ -3,7 +3,7 @@
 - name: Unarchive netsnmp-py.
   unarchive:
     remote_src: false
-    src: "{{ snetsnmp_package }}"
+    src: "{{ netsnmp_package }}"
     dest: /usr/local/src/
 
 - name: Install netsnmp-py.
