@@ -4,7 +4,7 @@ services: docker
 
 env:
   global:
-    - ROLE_NAME: zeromq
+    - ROLE_NAME: setuptools
   matrix:
     - MOLECULE_DISTRO: centos7
 

@@ -1,8 +1,4 @@
 ---
 
-czmq_package: czmq-4.1.1.tar.gz
-libzmq_package: libzmq.tar.gz
-pyzmq_package: pyzmq-14.1.1.tar.gz
-zeromq_package: zeromq-4.0.3.tar.gz
-setuptool_package: setuptools-39.1.0.zip
-netsnmp_package: netsnmp-py-0.4.tar.gz
+setuptool_version: "39.1.0"
+setuptool_package: "setuptools-39.1.0.zip"

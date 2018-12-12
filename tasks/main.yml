@@ -1,8 +1,14 @@
 ---
-# tasks file for python
 
-- include_tasks: variables.yml
-- include_tasks: base.yml
-- include_tasks: setuptool.yml
-- include_tasks: zeromq.yml
-- include_tasks: net-snmp.yml
+- name: Unarchive setuptool.
+  unarchive:
+    remote_src: false
+    src: "{{ setuptool_package }}"
+    dest: /usr/local/src/
+    creates: "/usr/local/src/{{ setuptool_package | regex_replace('\\.zip', '')| regex_replace('\\.tar.gz', '') }}"
+
+- name: Install setuptool.
+  shell: python setup.py install
+  args:
+    chdir: /usr/local/src/setuptools-{{ setuptool_version }}
+    creates: /usr/local/src/setuptools-{{ setuptool_version }}/build/lib/setuptools/__init__.py
